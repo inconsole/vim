@@ -161,7 +161,7 @@ Bundle 'gmarik/vundle'
 Bundle 'bash-support.vim'
 Bundle 'perl-support.vim'
 Bundle 'scrooloose/NerdTree'
-Bundle 'taglist.vim'
+"Bundle 'taglist.vim'
 Bundle 'JavaScript-syntax'
 Bundle 'jQuery'
 Bundle 'Markdown'
@@ -169,6 +169,7 @@ Bundle 'Markdown-syntax'
 Bundle 'php.vim-html-enhanced'
 Bundle 'css_color.vim'
 Bundle 'AutoComplPop'
+Bundle 'Tagbar'
 filetype plugin indent on
 
 
@@ -375,6 +376,21 @@ if has("cscope")
 	  map <C-h> :cs find s <C-R>=expand("<cword>")<CR>
 endif
 
+"Ctrl+F12更新或者删除ctags文件和cscope
+function! DeleteTagsFile()
+    if has("win32")
+        silent !del /F /Q tags
+        silent !del /F /Q cscope.*.*
+    else
+        silent !rm -f tags
+        silent !rm -f cscope.*
+    endif
+    silent !find $(pwd) -name "*.h" -o -name "*.c" -o -name "*.cc" -o -name "*.php" >cscope.files
+    silent !cscope -bkq -i cscope.files
+    silent !ctags -R
+endfunction
+map <F4> :call DeleteTagsFile()<CR>
+
 """"""""""""""""""""""""""""""""""""""""""
 "快捷键绑定
 """"""""""""""""""""""""""""""""""""""""""
@@ -383,7 +399,14 @@ nmap <M-q> :q!<cr>
 nmap <C-s> :w<cr>
 
 "F4 映射到启动TagList插件
-map <F4> :Tlist<CR>
+"map <F4> :Tlist<CR>
+
+"TabBar
+nnoremap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_right = 1
+let g:tagbar_width = 25
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+
 
 """"""""""""""""""""""""""""""""""""""""""
 "NERDTree
