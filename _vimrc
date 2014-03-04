@@ -170,6 +170,9 @@ Bundle 'php.vim-html-enhanced'
 Bundle 'css_color.vim'
 Bundle 'AutoComplPop'
 Bundle 'Tagbar'
+Bundle 'The-NERD-Commenter'
+Bundle 'ctrlp.vim'
+Bundle 'evidens/vim-twig'
 filetype plugin indent on
 
 
@@ -215,6 +218,9 @@ if has("autocmd")
 
     " 绑定 PHP 检查语法的快捷键
     au FileType php map <C-s><C-p> :!php -l %<cr>
+
+    " PHP Twig 模板引擎语法
+    au BufRead,BufNewFile *.twig set syntax=twig
 
     " JavaScript 语法高亮
     au FileType html,javascript let g:javascript_enable_domhtmlcss = 1
@@ -373,7 +379,8 @@ if has("cscope")
 	  endif
 	  set csverb
 	  map <C-g> :cs find g <C-R>=expand("<cword>")<CR>
-	  map <C-h> :cs find s <C-R>=expand("<cword>")<CR>
+	  map <C-h> :cs find c <C-R>=expand("<cword>")<CR>
+	  map <C-j> :cs find s <C-R>=expand("<cword>")<CR>
 endif
 
 "Ctrl+F12更新或者删除ctags文件和cscope
@@ -387,7 +394,7 @@ function! DeleteTagsFile()
     endif
     silent !find $(pwd) -name "*.h" -o -name "*.c" -o -name "*.cc" -o -name "*.php" >cscope.files
     silent !cscope -bkq -i cscope.files
-    silent !ctags -R
+    silent !ctags -R 2>/dev/null
 endfunction
 map <F4> :call DeleteTagsFile()<CR>
 
