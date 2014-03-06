@@ -173,6 +173,7 @@ Bundle 'Tagbar'
 Bundle 'The-NERD-Commenter'
 Bundle 'ctrlp.vim'
 Bundle 'evidens/vim-twig'
+Bundle 'Valloric/YouCompleteMe'
 filetype plugin indent on
 
 
