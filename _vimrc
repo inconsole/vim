@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-"	For Vimrc  By  @ph4nf4n .Mac
+"	For Vimrc  By  .Mac
 "
 "                           2013-05-15 17:35:50
 "
@@ -439,3 +439,16 @@ map <C-p> :tabprevious<cr>
 map <C-n> :tabnext<cr>
 map <C-k> :tabclose<cr>
 map <C-Tab> :tabnext<cr>
+
+"代码加上头信息
+function AddTitle()
+    call setline(1,"/****************************************************")
+    call append(1,"*        Author          :   @zhangsan")
+    call append(2,"*        Email           :   zhangsan@gmail.com")
+    call append(3,"*        Filename        :   " . expand("%"))
+    call append(4,"*        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))
+    call append(5,"*        Description     : ")
+    call append(6,"* ***************************************************/")
+endf
+map <F2> :call AddTitle()<CR>
+map <F1> :call setline(5,"*        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))<CR>
