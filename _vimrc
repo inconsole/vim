@@ -421,6 +421,10 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 " t新标签页打开文件
 " p到上层目录
 " P到顶层目录
+" Shift + R 刷新目录文件
+" Shift + c 将选中目录作为父节点
+" cd 将选中目录作为当前路径
+" Shift + R 刷新目录文件
 " Ctrl+w+h 切换到左边焦点
 " Ctrl+w+l 切换到右边焦点
 " Ctrl+w+w 左右切换
@@ -443,12 +447,20 @@ map <C-Tab> :tabnext<cr>
 "代码加上头信息
 function AddTitle()
     call setline(1,"/****************************************************")
-    call append(1,"*        Author          :   @zhangsan")
-    call append(2,"*        Email           :   zhangsan@gmail.com")
-    call append(3,"*        Filename        :   " . expand("%"))
-    call append(4,"*        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))
-    call append(5,"*        Description     : ")
-    call append(6,"* ***************************************************/")
+    call append(1,"#        Author          :   @ph4nf4n")
+    call append(2,"#        Email           :   ph4nf4n@gmail.com")
+    call append(3,"#        Filename        :   " . expand("%"))
+    call append(4,"#        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))
+    call append(5,"#        Description     : ")
+    call append(6,"# ***************************************************/")
 endf
+
+"更新代码头信息
+function UpdateTitle()
+    call setline(4,"#        Filename        :   " . expand("%"))
+    call setline(5,"#        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))
+endf
+
+
 map <F2> :call AddTitle()<CR>
-map <F1> :call setline(5,"*        Last modified   :   " . strftime("%Y-%m-%d %H:%M"))<CR>
+map <F1> :call UpdateTitle()<CR>
