@@ -168,11 +168,10 @@ Bundle 'Markdown'
 Bundle 'Markdown-syntax'
 Bundle 'php.vim-html-enhanced'
 Bundle 'css_color.vim'
-Bundle 'AutoComplPop'
 Bundle 'Tagbar'
 Bundle 'The-NERD-Commenter'
 Bundle 'ctrlp.vim'
-Bundle 'evidens/vim-twig'
+Bundle 'kevinw/pyflakes-vim'
 Bundle 'Valloric/YouCompleteMe'
 filetype plugin indent on
 
@@ -413,8 +412,11 @@ nmap <C-s> :w<cr>
 nnoremap <silent> <F8> :TagbarToggle<CR>
 let g:tagbar_right = 1
 let g:tagbar_width = 25
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
 
+"pyflakes
+filetype on
+filetype plugin on
 
 """"""""""""""""""""""""""""""""""""""""""
 "NERDTree
