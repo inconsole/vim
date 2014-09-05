@@ -435,6 +435,12 @@ filetype plugin on
 map <F5> :NERDTreeMirror<CR>
 map <F5> :NERDTreeToggle<CR>
 
+""""""""""""""""""""""""""""""""""""""""
+"YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' 
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_confirm_extra_conf=0
+
 
 "插入时间快捷键
 nmap <F3> <c-r>=strftime("20%y-%m-%d %H:%M:%S")<C-I><Esc>
